@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - WeddingPlanner</title>
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/assets/css/bootstrap.min.css">
+       <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+       <link rel="stylesheet" href="~/assets/scss/app.css">
+       <link rel="stylesheet" href="~/css/site.css">
+       <link rel="stylesheet" href="~/assets/scss/app.css">
+    </environment>
+    <!-- <environment exclude="Development">
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    </environment> -->
+</head>
+<body>
+<nav class="navbar navbar-expand-lg bg-danger fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="/">WeddingPlanner</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Menu
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="Register">Register</a>
+                <a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="Login">Login</a>
+                <a class="dropdown-item" asp-area="" asp-controller="Wedding" asp-action="Logout">Logout</a>
+                <a class="dropdown-item" asp-area="" asp-controller="Wedding" asp-action="AddEvent">Add Event</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+    <div class="container">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; 2018 - WeddingPlanner</p>
+        </footer>
+    </div>
+
+   <environment include="Development">
+        <script src="~/assets/js/core/jquery.min.js"></script>
+        <script src="~/assets/js/core/bootstrap.min.js"></script>
+        <script src="~/assets/js/core/popper.min.js"></script>
+        <script src="~/assets/js/paper-kit.min.js"></script>
+        <script src="~/assets/js/plugins/moment.min.js"></script>
+        <script src="~/assets/js/plugins/bootstrap-datetimepicker.js"></script>
+        <script src="~/js/site.js"></script>
+    </environment>
+    <!-- <environment exclude="Development">
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha384-K+ctZQ+LL8q6tP7I94W+qzQsfRV2a+AfHIi9k8z8l9ggpc8X+Ytst4yBo/hH+8Fk">
+        </script>
+        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
+        </script>
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
+    </environment> -->
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

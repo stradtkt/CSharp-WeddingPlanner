@@ -1,0 +1,29 @@
+@model WeddingPlanner.Models.LoginUser
+
+<div class="row">
+    <div class="col-md-6 offset-3">
+        <h1 class="text-center">Login</h1>
+        <form asp-action="LoginUser" asp-controller="Home" method="POST">
+            <div class="form-group">
+                <div class="bg-danger">
+                    <span asp-validation-for="LoginEmail"></span>
+                </div>
+                <label asp-for="LoginEmail"></label>
+                <input asp-for="LoginEmail" class="form-control">
+            </div>
+            <div class="form-group">
+                <div class="bg-danger">
+                    <span asp-validation-for="LoginPassword"></span>
+                </div>
+                <label asp-for="LoginPassword"></label>
+                <input asp-for="LoginPassword" class="form-control">
+            </div>
+            <input type="submit" value="Login" class="btn btn-danger">
+        </form>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 offset-3">
+        <p class="lead text-center">Need to register instead? <a asp-action="Register" asp-controller="Home" asp-area="" class="btn btn-round btn-primary">Register</a></p>
+    </div>
+</div>
