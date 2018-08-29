@@ -55,7 +55,7 @@ namespace WeddingPlanner.Controllers
                   };
                 _wContext.Add(newUser);
                 _wContext.SaveChanges();
-                ViewBag.errors = "Successfully registered";
+                ViewBag.success = "Successfully registered";
                 return RedirectToAction("Login");
             }
             else

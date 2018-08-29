@@ -8,8 +8,10 @@ namespace WeddingPlanner.Models
     {
         [Key, Column("wedding_id")]
         public int WeddingId {get;set;}
-        [Column("host")]
-        public int Host {get;set;}
+        [Column("user_id")]
+        [ForeignKey("user_id")]
+        public int HostId {get;set;}
+        public User Host {get;set;}
 
         [Column("wedder_one")]
         public string WedderOne {get;set;}
@@ -17,8 +19,6 @@ namespace WeddingPlanner.Models
         [Column("wedder_two")]
         public string WedderTwo {get;set;}
 
-        [Column("event_name")]
-        public string EventName {get;set;}
         [Column("event_date")]
         public DateTime EventDate {get;set;}
 

@@ -1,6 +1,7 @@
+@model WeddingPlanner.Models.Wedding
 <div class="row">
     <div class="col-md-10 offset-1">
-        <h1 class="text-center">Welcome to the Wedding Planner @ViewBag.name.FirstName @ViewBag.name.LastName</h1>
+        <h1 class="text-center">Wedding Planner: @ViewBag.name.FirstName @ViewBag.name.LastName</h1>
         <table class="table table-hover mb-5 mt-5">
             <thead class="thead-danger">
                 <tr>
@@ -11,13 +12,29 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td><a href=""></a></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
+                @foreach(var wedding in ViewBag.Weddings)
+                {
+                    <tr>
+                        <td><a href="">@wedding.WedderOne &amp; @wedding.WedderTwo</a></td>
+                        <td>@wedding.EventDate</td>
+                        <td></td>
+                        <td>
+                            <a href="" class="btn btn-round btn-primary">Rsvp</a>
+                            <a href="" class="btn btn-round btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                }
             </tbody>
         </table>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6 offset-3">
+        @if(ViewBag.id != null)
+        {
+            <a class="btn btn-round btn-danger" asp-area="" asp-controller="Wedding" asp-action="Logout">Logout</a>
+            <a class="btn btn-round btn-primary" asp-area="" asp-controller="Wedding" asp-action="AddEvent">Add Event</a>
+        }
     </div>
 </div>

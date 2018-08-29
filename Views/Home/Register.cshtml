@@ -1,5 +1,12 @@
 @model WeddingPlanner.Models.RegisterUser
-
+<div class="row">
+    <div class="col-md-6 offset-3">
+        <div class="bg-danger">
+            <p class="text-center">@ViewBag.errors</p>
+        </div>
+        <div class="bg-success">@ViewBag.success</div>
+    </div>
+</div>
 <div class="row">
     <div class="col-md-6 offset-3">
         <h1 class="text-center">Register</h1>

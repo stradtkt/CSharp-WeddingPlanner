@@ -2,6 +2,16 @@
 
 <div class="row">
     <div class="col-md-6 offset-3">
+        <div class="bg-danger">
+            <p class="text-center">@ViewBag.errors</p>
+        </div>
+        <div class="bg-success">
+            <p class="text-center">@ViewBag.success</p>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 offset-3">
         <h1 class="text-center">Login</h1>
         <form asp-action="LoginUser" asp-controller="Home" method="POST">
             <div class="form-group">

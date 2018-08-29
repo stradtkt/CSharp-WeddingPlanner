@@ -39,6 +39,11 @@ namespace WeddingPlanner.Controllers
             User thisUserName = _wContext.users 
                 .Where(u => u.FirstName == HttpContext.Session.GetString("first_name"))
                 .FirstOrDefault();
+            ViewBag.Weddings = _wContext.weddings
+                .Where(w => w.EventDate > System.DateTime.Now)
+                .OrderBy(d => d.EventDate)
+                .Include(u => u.Host)
+                .ToList();
             ViewBag.id = thisUser;
             ViewBag.name = thisUserName;
             return View();
@@ -54,8 +59,8 @@ namespace WeddingPlanner.Controllers
             return View();
         }
 
-        [HttpPost("AddEvent")]
-        public IActionResult AddEvent(Wedding events)
+        [HttpPost("AddEvent/new")]
+        public IActionResult AddEventData(AddEventData events)
         {
             if(ActiveUser == null)
             {
@@ -63,20 +68,35 @@ namespace WeddingPlanner.Controllers
             }
             if(ModelState.IsValid)
             {
-                Wedding wedding = new Wedding
-                {
-                    Host = ActiveUser.UserId,
-                    WedderOne = events.WedderOne,
-                    WedderTwo = events.WedderTwo,
-                    EventName = events.EventName,
-                    EventDate = events.EventDate,
-                    Address = events.Address
-                };
-                _wContext.weddings.Add(wedding);
+                Wedding Wedding = events.TheWedding();
+                Wedding.Host = ActiveUser;
+                _wContext.Add(Wedding);
                 _wContext.SaveChanges();
                 return RedirectToAction("Dashboard", "Wedding");
             }
             return View("AddEvent");
+        }
+
+        [HttpPost("RSVP")]
+        public IActionResult RSVP(int id)
+        {
+            Wedding SelectedWedding = _wContext.weddings
+                .Where(w => w.WeddingId == id)
+                .SingleOrDefault();
+            if(_wContext.wedding_guests.Where(g => g.UserId == ActiveUser.UserId).Where(w => w.WeddingId == SelectedWedding.WeddingId).Count() == 0)
+            {
+                WeddingGuest NewGuest = new WeddingGuest(SelectedWedding, ActiveUser);
+                _wContext.Add(NewGuest);
+                _wContext.SaveChanges();
+            }
+            else
+            {
+                WeddingGuest NewGuest = _wContext.wedding_guests
+                    .Where(g => g.UserId == ActiveUser.UserId)
+                    .Where(w => w.WeddingId == SelectedWedding.WeddingId)
+                    .SingleOrDefault();
+            }
+            return RedirectToAction("Dashboard", "Wedding");
         }
 
         [HttpGet("logout")]

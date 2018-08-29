@@ -57,6 +57,7 @@ namespace WeddingPlanner.Models
         [EmailAddress(ErrorMessage="This is an email field")]
         [DataType(DataType.EmailAddress)]
         [Column("email")]
+        [Display(Name="Email")]
         public string LoginEmail {get;set;}
 
         [Required(ErrorMessage="Password is required")]
@@ -64,19 +65,14 @@ namespace WeddingPlanner.Models
         [MaxLength(20, ErrorMessage="A maximum length of 20")]
         [DataType(DataType.Password)]
         [Column("password")]
+        [Display(Name="Password")]
 
         public string LoginPassword {get;set;}
     }
 
     public class AddEventData : BaseEntity
     {
-        [Required(ErrorMessage="Event name is required")]
-        [Column("event_name")]
-        [MinLength(3, ErrorMessage="Min length of 3")]
-        [MaxLength(40, ErrorMessage="Max length of 40")]
-        [Display(Name="Event Name")]
-        public string EventName {get;set;}
-
+        public int HostId {get;set;}
         [Required(ErrorMessage="Wedder One is required")]
         [Column("wedder_one")]
         [MinLength(3, ErrorMessage="Min length of 3")]
@@ -103,6 +99,18 @@ namespace WeddingPlanner.Models
         [MaxLength(40, ErrorMessage="Max length of 40")]
         [Display(Name="Address")]
         public string Address {get;set;}
+        public Wedding TheWedding()
+        {
+            Wedding newWedding = new Wedding
+            {
+                HostId = this.HostId,
+                WedderOne = this.WedderOne,
+                WedderTwo = this.WedderTwo,
+                EventDate = this.EventDate,
+                Address = this.Address
+            };
+            return newWedding;
+        }
     }
 
 }

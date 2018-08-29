@@ -1,19 +1,11 @@
-@model WeddingPlanner.Models.UserViewModel
+@model WeddingPlanner.Models.AddEventData
 @{
-    ViewData["Title"] = "Add Event"
+    ViewData["Title"] = "Add Event";
 }
 <div class="row">
-    <div class="col-md-8 offset-2">
+    <div class="col-md-6 offset-3">
         <h1 class="text-center">@ViewData["Title"]</h1>
-        <form asp-action="" asp-controller="Wedding" method="POST">
-            <div class="form-group">
-                <div class="bg-danger">
-                    <span asp-validation-for="EventName"></span>
-                </div>
-                <br>
-                <label asp-for="EventName"></label>
-                <input asp-for="EventName" class="form-control">
-            </div>
+        <form asp-action="AddEventData" asp-controller="Wedding" method="POST" class="form">
             <div class="form-group">
                 <div class="bg-danger">
                     <span asp-validation-for="WedderOne"></span>
@@ -48,5 +40,11 @@
             </div>
             <input type="submit" class="btn btn-round btn-primary" value="Add Event">
         </form>
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-md-6 offset-3">
+        <a class="btn btn-round btn-danger" asp-area="" asp-controller="Wedding" asp-action="Dashboard">Go Back</a>
     </div>
 </div>
