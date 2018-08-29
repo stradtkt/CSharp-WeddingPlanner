@@ -19,13 +19,13 @@ namespace WeddingPlanner.Controllers
     {
         _wContext = context;    
     }
-    private User ActiveUser 
-    {
-        get 
+        private User ActiveUser 
         {
-            return _wContext.users.Where(u => u.UserId == HttpContext.Session.GetInt32("user_id")).FirstOrDefault();
+            get 
+            {
+                return _wContext.users.Where(u => u.UserId == HttpContext.Session.GetInt32("user_id")).FirstOrDefault();
+            }
         }
-    }
         [HttpGet("dashboard")]
         public IActionResult Dashboard()
         {
@@ -41,8 +41,7 @@ namespace WeddingPlanner.Controllers
                 .FirstOrDefault();
             ViewBag.id = thisUser;
             ViewBag.name = thisUserName;
-            List<Wedding> Weddings = _wContext.weddings.Include(w => w.Guests).ToList();
-            return View(Weddings);
+            return View();
         }
         
         [HttpGet("AddEvent")]
@@ -53,6 +52,31 @@ namespace WeddingPlanner.Controllers
                 return RedirectToAction("Login", "Home");
             }
             return View();
+        }
+
+        [HttpPost("AddEvent")]
+        public IActionResult AddEvent(Wedding events)
+        {
+            if(ActiveUser == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
+            if(ModelState.IsValid)
+            {
+                Wedding wedding = new Wedding
+                {
+                    Host = ActiveUser.UserId,
+                    WedderOne = events.WedderOne,
+                    WedderTwo = events.WedderTwo,
+                    EventName = events.EventName,
+                    EventDate = events.EventDate,
+                    Address = events.Address
+                };
+                _wContext.weddings.Add(wedding);
+                _wContext.SaveChanges();
+                return RedirectToAction("Dashboard", "Wedding");
+            }
+            return View("AddEvent");
         }
 
         [HttpGet("logout")]

@@ -1,0 +1,52 @@
+@model WeddingPlanner.Models.UserViewModel
+@{
+    ViewData["Title"] = "Add Event"
+}
+<div class="row">
+    <div class="col-md-8 offset-2">
+        <h1 class="text-center">@ViewData["Title"]</h1>
+        <form asp-action="" asp-controller="Wedding" method="POST">
+            <div class="form-group">
+                <div class="bg-danger">
+                    <span asp-validation-for="EventName"></span>
+                </div>
+                <br>
+                <label asp-for="EventName"></label>
+                <input asp-for="EventName" class="form-control">
+            </div>
+            <div class="form-group">
+                <div class="bg-danger">
+                    <span asp-validation-for="WedderOne"></span>
+                </div>
+                <br>
+                <label asp-for="WedderOne"></label>
+                <input asp-for="WedderOne" class="form-control">
+            </div>
+            <div class="form-group">
+                <div class="bg-danger">
+                    <span asp-validation-for="WedderTwo"></span>
+                </div>
+                <br>
+                <label asp-for="WedderTwo"></label>
+                <input asp-for="WedderTwo" class="form-control">
+            </div>
+            <div class="form-group">
+                <div class="bg-danger">
+                    <span asp-validation-for="EventDate"></span>
+                </div>
+                <br>
+                <label asp-for="EventDate"></label>
+                <input asp-for="EventDate" class="form-control">
+            </div>
+            <div class="form-group">
+                <div class="bg-danger">
+                    <span asp-validation-for="Address"></span>
+                </div>
+                <br>
+                <label asp-for="Address"></label>
+                <input asp-for="Address" class="form-control">
+            </div>
+            <input type="submit" class="btn btn-round btn-primary" value="Add Event">
+        </form>
+    </div>
+</div>

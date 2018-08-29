@@ -8,6 +8,8 @@ namespace WeddingPlanner.Models
     {
         [Key, Column("wedding_id")]
         public int WeddingId {get;set;}
+        [Column("host")]
+        public int Host {get;set;}
 
         [Column("wedder_one")]
         public string WedderOne {get;set;}

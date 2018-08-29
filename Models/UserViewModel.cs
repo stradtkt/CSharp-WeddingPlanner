@@ -68,4 +68,41 @@ namespace WeddingPlanner.Models
         public string LoginPassword {get;set;}
     }
 
+    public class AddEventData : BaseEntity
+    {
+        [Required(ErrorMessage="Event name is required")]
+        [Column("event_name")]
+        [MinLength(3, ErrorMessage="Min length of 3")]
+        [MaxLength(40, ErrorMessage="Max length of 40")]
+        [Display(Name="Event Name")]
+        public string EventName {get;set;}
+
+        [Required(ErrorMessage="Wedder One is required")]
+        [Column("wedder_one")]
+        [MinLength(3, ErrorMessage="Min length of 3")]
+        [MaxLength(40, ErrorMessage="Max length of 40")]
+        [Display(Name="Wedder One")]
+        public string WedderOne {get;set;}
+
+        [Required(ErrorMessage="Wedder Two is required")]
+        [Column("wedder_two")]
+        [MinLength(3, ErrorMessage="Min length of 3")]
+        [MaxLength(40, ErrorMessage="Max length of 40")]
+        [Display(Name="Wedder Two")]
+        public string WedderTwo {get;set;}
+
+        [Required(ErrorMessage="Event Date is required")]
+        [Column("event_date")]
+        [Display(Name="Event Date")]
+        [DataType(DataType.Date)]
+        public DateTime EventDate {get;set;}
+
+        [Required(ErrorMessage="Address is required")]
+        [Column("address")]
+        [MinLength(3, ErrorMessage="Min length of 3")]
+        [MaxLength(40, ErrorMessage="Max length of 40")]
+        [Display(Name="Address")]
+        public string Address {get;set;}
+    }
+
 }
